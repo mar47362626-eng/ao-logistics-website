@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#263b32">
+  <meta name="description" content="Register your interest in riding with A&M Logistics.">
+  <title>A&M Logistics | Rider registration</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="rider.css">
+  <script src="api-client.js" defer></script>
+  <script src="rider.js" defer></script>
+</head>
+<body>
+  <header class="rider-header"><a class="admin-brand" href="index.html" aria-label="A&M Logistics home"><span class="brand-mark">A<span>&</span>M</span><span class="brand-name">LOGISTICS</span></a><a class="back-link" href="index.html">Back to A&M <span aria-hidden="true">↗</span></a></header>
+  <main class="rider-layout">
+    <section class="rider-intro">
+      <p class="eyebrow">RIDE WITH A&M</p>
+      <h1>Make every<br>mile <span>matter.</span></h1>
+      <p class="intro-copy">Register your interest in delivering with A&M. Share your contact details, vehicle, and the areas you can cover.</p>
+      <div class="rider-facts"><div><strong>01</strong><span>Tell us who you are</span></div><div><strong>02</strong><span>Share your vehicle and area</span></div><div><strong>03</strong><span>We’ll review your application</span></div></div>
+      <p class="local-note">Applications are reviewed before rider accounts are activated. Your details are sent securely to A&M for review.</p>
+    </section>
+    <section class="rider-panel">
+      <div class="rider-auth-switch" aria-label="Rider account access">
+        <button type="button" class="rider-auth-tab is-active" data-rider-auth-view="apply" aria-pressed="true">Apply to ride</button>
+        <button type="button" class="rider-auth-tab" data-rider-auth-view="login" aria-pressed="false">Check application</button>
+      </div>
+      <form id="rider-form" class="rider-form">
+        <div class="form-heading"><p class="eyebrow">RIDER APPLICATION</p><h2>Tell us about yourself</h2><p>All fields are required unless marked optional.</p></div>
+        <div class="form-row"><label>Full name<input name="name" autocomplete="name" required placeholder="Your full name"></label><label>Phone number<input name="phone" type="tel" autocomplete="tel" required placeholder="A number we can reach you on"></label></div>
+        <label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+        <div class="form-row"><label>Vehicle type<select name="vehicle" required><option value="" disabled selected>Select a vehicle</option><option>Bicycle</option><option>Motorcycle</option><option>Car</option><option>Van</option><option>Other</option></select></label><label>Driving licence number<input name="license" type="text" autocomplete="off" maxlength="100" required placeholder="Enter your driving licence number"></label></div>
+        <p class="licence-help">Enter the licence ID exactly as shown on your driving licence. Letters and numbers are accepted.</p>
+        <label>Preferred delivery area<input name="area" required placeholder="Town, city, or postcode area"></label>
+        <div class="form-row"><label>Create a password<input name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" required placeholder="At least 8 characters"></label><label>Confirm password<input name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required placeholder="Type it again"></label></div>
+        <label class="consent"><input name="consent" type="checkbox" required><span>I confirm these details are accurate and may be used to contact me about rider registration.</span></label>
+        <button class="submit-button" type="submit">Submit rider registration <span aria-hidden="true">↗</span></button>
+        <p class="form-status" id="rider-status" role="status" aria-live="polite"></p>
+      </form>
+      <form id="rider-login-form" class="rider-form" hidden>
+        <div class="form-heading"><p class="eyebrow">RIDER ACCOUNT</p><h2>Check your application</h2><p>Sign in with the email and password you used to apply.</p></div>
+        <label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128" placeholder="Your rider password"></label>
+        <button class="submit-button" type="submit">Sign in <span aria-hidden="true">↗</span></button>
+        <p class="form-status" id="rider-login-status" role="status" aria-live="polite"></p>
+      </form>
+      <section id="rider-pending" class="rider-state" hidden>
+        <p class="eyebrow">APPLICATION RECEIVED</p><h2>Thanks, <span id="rider-first-name"></span>.</h2><p>Your application is <strong id="rider-status-label">Pending review</strong>. Your rider dashboard will become available after A&M accepts your registration.</p><p class="rider-reference" id="rider-reference"></p><p class="form-status" id="rider-application-warning" role="status" aria-live="polite"></p>
+        <button class="submit-button" id="check-rider-status" type="button">Check application status <span aria-hidden="true">↻</span></button>
+        <p class="form-status" id="rider-review-status" role="status" aria-live="polite"></p>
+        <a class="back-link" href="index.html">Return to A&M <span aria-hidden="true">↗</span></a>
+      </section>
+      <section id="rider-declined" class="rider-state" hidden>
+        <p class="eyebrow">APPLICATION UPDATE</p><h2>Thanks for your interest, <span id="declined-rider-name"></span>.</h2><p>Your rider application was not approved at this time. Please contact A&M if you have questions.</p><p class="rider-reference" id="declined-rider-reference"></p>
+        <a class="back-link" href="index.html">Return to A&M <span aria-hidden="true">↗</span></a>
+      </section>
+      <section id="rider-dashboard" class="rider-dashboard-shell rider-state" hidden>
+        <aside class="rider-sidebar">
+          <a class="admin-brand" href="index.html" aria-label="A and M Logistics home"><span class="brand-mark">A<span>&</span>M</span><span class="brand-name">LOGISTICS</span></a>
+          <div class="sidebar-label">WORKSPACE</div>
+          <nav class="rider-nav" aria-label="Rider dashboard navigation">
+            <button class="rider-nav-item is-active" type="button" data-rider-view="overview" aria-controls="rider-overview-view" aria-current="page">Overview</button>
+            <button class="rider-nav-item" type="button" data-rider-view="deliveries" aria-controls="rider-deliveries-view">Deliveries</button>
+            <button class="rider-nav-item" type="button" data-rider-view="messages" aria-controls="rider-messages-view">Messages</button>
+          </nav>
+          <div class="sidebar-bottom"><span class="preview-indicator"><span></span> RIDER ACCESS</span><p>Your account is active and ready for dispatch updates.</p><a href="index.html">Return to A&M <span aria-hidden="true">↗</span></a></div>
+        </aside>
+        <div class="rider-main-panel">
+          <header class="rider-workspace-header"><div><p class="breadcrumb">OPERATIONS <span>/</span> RIDER WORKSPACE</p><h1>Welcome aboard, <span id="dashboard-rider-name"></span>.</h1><p class="page-summary">Your rider account is approved and active.</p></div><div class="header-tools"><span class="local-tag">APPROVED</span><button class="refresh-button" type="button" id="rider-refresh">Refresh</button><button class="refresh-button" type="button" id="rider-sign-out">Sign out</button></div></header>
+          <section class="rider-dashboard-view" id="rider-overview-view" data-rider-view-panel="overview" aria-label="Overview">
+            <div class="metric-grid rider-metrics">
+              <article class="metric"><span class="metric-label">Account status</span><strong>Active</strong><span class="metric-caption">Ready to receive work</span></article>
+              <article class="metric"><span class="metric-label">Delivery area</span><strong id="dashboard-rider-area">—</strong><span class="metric-caption">Preferred service route</span></article>
+              <article class="metric"><span class="metric-label">Vehicle</span><strong id="dashboard-rider-vehicle">—</strong><span class="metric-caption">Assigned rider profile</span></article>
+            </div>
+            <section class="rider-panel-card overview-status"><div class="panel-heading"><div><h2>Dispatch status</h2><p>Your rider account is ready for updates.</p></div></div><p>No deliveries have been assigned yet. New work will appear in Deliveries.</p></section>
+          </section>
+          <section class="rider-dashboard-view" id="rider-deliveries-view" data-rider-view-panel="deliveries" aria-label="Deliveries" hidden>
+            <section class="rider-panel-card"><div class="panel-heading"><div><h2>Assigned deliveries</h2><p>Your current delivery assignments</p></div></div><div class="assigned-deliveries" id="assigned-deliveries"><p>No deliveries have been assigned yet. A&M will update this space when work is available.</p></div></section>
+          </section>
+          <section class="rider-dashboard-view" id="rider-messages-view" data-rider-view-panel="messages" aria-label="Messages" hidden>
+            <section class="rider-panel-card"><div class="panel-heading"><div><h2>Messages</h2><p>Updates from A&M</p></div></div><div class="rider-inbox"><div id="rider-notification-list"><p>No rider messages yet.</p></div></div></section>
+          </section>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

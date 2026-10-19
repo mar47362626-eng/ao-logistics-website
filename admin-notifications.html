@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#263b32">
+  <title>A&M Logistics | Notifications</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css"><script src="api-client.js" defer></script><script src="admin-auth.js" defer></script><script src="admin-pages.js" defer></script><script src="admin-menu.js" defer></script>
+</head>
+<body data-admin-page="notifications">
+  <aside class="admin-sidebar" aria-hidden="true" inert>
+    <a class="admin-brand" href="index.html" aria-label="A and M Logistics home"><span class="brand-mark">A<span>&</span>M</span><span class="brand-name">LOGISTICS</span></a>
+    <div class="sidebar-label">WORKSPACE</div>
+    <nav class="sidebar-nav" id="admin-navigation" aria-label="Admin navigation">
+      <a class="sidebar-link" href="admin.html"><span aria-hidden="true">⇄</span> Orders</a><a class="sidebar-link" href="admin-users.html"><span aria-hidden="true">◎</span> Users</a><a class="sidebar-link" href="admin-riders.html"><span aria-hidden="true">⌁</span> Riders</a><a class="sidebar-link is-active" href="admin-notifications.html" aria-current="page"><span aria-hidden="true">✉</span> Notifications</a><a class="sidebar-link" href="admin-delivered.html"><span aria-hidden="true">✓</span> Delivered</a>
+    </nav>
+    <div class="sidebar-bottom"><span class="preview-indicator"><span></span> SECURE OPERATIONS</span><p>Records are shared through the server.</p><button class="admin-sign-out" id="admin-sign-out" type="button">Sign out</button><a href="rider.html">Rider registration ↗</a><a href="index.html">Open customer site ↗</a></div>
+  </aside>
+  <button class="admin-menu-backdrop" type="button" aria-label="Close admin menu" hidden></button>
+  <main class="admin-main">
+    <header class="admin-header"><button class="admin-menu-toggle" type="button" aria-expanded="false"><span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span><span class="menu-label">Menu</span></button><div><p class="breadcrumb">OPERATIONS <span>/</span> COMMUNICATIONS</p><h1>Notifications</h1><p class="page-summary">Send a message to registered customers, riders, or everyone.</p></div><div class="header-tools"><span class="local-tag">LIVE DATA</span><button class="refresh-button" id="refresh-page" type="button">Refresh</button></div></header>
+    <div class="storage-notice" role="note"><strong>Shared notifications</strong><span>Messages are delivered to the selected audience and appear in their account dashboards.</span></div>
+    <section class="admin-data-view notification-layout standalone-notifications">
+      <section class="registration-activity" aria-labelledby="admin-registrations-heading">
+        <div class="view-heading"><div><h2 id="admin-registrations-heading">Recent registrations</h2><p id="registration-summary">Loading new customer and rider registrations…</p></div></div>
+        <div class="registration-list" id="registration-list" aria-live="polite"><p class="empty-cell">Loading registrations…</p></div>
+      </section>
+      <section class="message-composer"><div class="view-heading"><div><h2>Compose a message</h2><p>Choose who should see this update.</p></div></div>
+        <form id="notification-form" class="notification-form">
+          <label>Subject<input name="subject" required maxlength="100" placeholder="A short message title"></label>
+          <label>Send to<select name="audience"><option value="everyone">All registered users and riders</option><option value="customers">Registered users</option><option value="riders">Registered riders</option></select></label>
+          <label>Message<textarea name="message" rows="6" required maxlength="1200" placeholder="Write your update"></textarea></label>
+          <button class="status-editor-button" type="submit">Send notification</button><p class="notification-status" id="notification-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+      <section class="sent-notifications"><div class="view-heading"><div><h2>Sent messages</h2><p id="notifications-summary">Loading saved messages…</p></div></div><div class="notification-list" id="notification-list"><p class="empty-cell">Loading notifications…</p></div></section>
+    </section>
+    <footer class="admin-footer"><span>A&M LOGISTICS · NOTIFICATIONS</span><span>Operations workspace</span></footer>
+  </main>
+</body>
+</html>

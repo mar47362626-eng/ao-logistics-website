@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#263b32">
+  <title>A&M Logistics | Admin sign in</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+  <script src="api-client.js" defer></script>
+  <script src="admin-login.js" defer></script>
+</head>
+<body>
+  <main class="admin-login">
+    <a class="admin-brand" href="index.html" aria-label="A and M Logistics home"><span class="brand-mark">A<span>&</span>M</span><span class="brand-name">LOGISTICS</span></a>
+    <form id="admin-login-form" class="admin-login-form">
+      <p class="breadcrumb">OPERATIONS <span>/</span> SECURE ACCESS</p>
+      <h1>Admin sign in</h1>
+      <p class="page-summary">Sign in with the administrator credentials configured on the server.</p>
+      <label>Email address<input name="email" type="email" autocomplete="username" required></label>
+      <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="status-editor-button" type="submit">Sign in</button>
+      <p class="notification-status" id="admin-login-status" role="status" aria-live="polite"></p>
+      <a class="back-link" href="admin-register.html">Create admin account</a>
+      <a class="back-link" href="index.html">Return to A&M <span aria-hidden="true">↗</span></a>
+    </form>
+  </main>
+</body>
+</html>

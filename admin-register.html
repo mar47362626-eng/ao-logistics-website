@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#263b32">
+  <title>A&M Logistics | Admin registration</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+  <script src="api-client.js" defer></script>
+  <script src="admin-register.js" defer></script>
+</head>
+<body>
+  <main class="admin-login">
+    <a class="admin-brand" href="index.html" aria-label="A and M Logistics home"><span class="brand-mark">A<span>&</span>M</span><span class="brand-name">LOGISTICS</span></a>
+    <form id="admin-register-form" class="admin-login-form">
+      <p class="breadcrumb">OPERATIONS <span>/</span> CREATE ADMIN</p>
+      <h1>Register admin</h1>
+      <p class="page-summary">Create the first administrator account, or sign in first to add another admin.</p>
+      <label>Full name<input name="name" type="text" autocomplete="name" required></label>
+      <label>Email address<input name="email" type="email" autocomplete="username" required></label>
+      <label>Phone number<input name="phone" type="tel" autocomplete="tel" placeholder="Optional"></label>
+      <label>Password<input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+      <button class="status-editor-button" type="submit">Create admin account</button>
+      <p class="notification-status" id="admin-register-status" role="status" aria-live="polite"></p>
+      <a class="back-link" href="admin-login.html">Already have an admin login? <span aria-hidden="true">↗</span></a>
+    </form>
+  </main>
+</body>
+</html>
